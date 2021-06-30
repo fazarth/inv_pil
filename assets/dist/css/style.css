@@ -1,0 +1,25 @@
+/* .content-wrapper .content .content-fluid {
+  padding-top: 20px;
+}
+
+.card-header .row .col-md-6 .btn {
+  float: right;
+} */
+
+/* div.dataTables_wrapper {
+  width: 800px;
+  margin: 0 auto;
+} */
+
+.card {
+  margin-top: 16px;
+}
+
+.col-md-6 .btn {
+  float: right;
+}
+
+#tbl_in {
+  width: 1200px;
+  margin: 0 auto;
+}
