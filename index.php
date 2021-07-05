@@ -30,8 +30,10 @@ require 'function.php';
   <!-- Select2 -->
   <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="assets/plugins/sweetalert2/sweetalert2.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <link rel="stylesheet" href="assets/plugins/toastr/toastr.min.css">
 
   <!-- My Css -->
   <link rel="stylesheet" href="assets/dist/css/style.css">
@@ -366,6 +368,7 @@ require 'function.php';
 <script src="assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="assets/plugins/toastr/toastr.min.js"></script>
 
 <!-- DataTables  & Plugins -->
 <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -419,7 +422,7 @@ require 'function.php';
         });
     });
     $(document).ready(function () {
-        $("#id_brg").select2({
+        $(".id_brg").select2({
             placeholder: "Silahkan Pilih"
         });
     });

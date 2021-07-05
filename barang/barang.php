@@ -1,18 +1,29 @@
 <?php
 if(isset($_POST["submit"])) {
   if(tambah_brg($_POST) > 0 ) {
-    echo "
-    <script> 
-    alert('data berhasil ditambahkan');
-    document.location.href = '?halaman=barang';
-    </script>
-    ";
-  } else {
-    echo "
-    <script> alert('data gagal ditambahkan');
-    document.location.href = '?halaman=barang';
-    </script>
-    ";
+  //   echo "
+  //   <script> 
+  //   alert('data berhasil ditambahkan');
+  //   document.location.href = '?halaman=barang';
+  //   </script>
+  //   ";
+  // } else {
+  //   echo "
+  //   <script> alert('data gagal ditambahkan');
+  //   document.location.href = '?halaman=barang';
+  //   </script>
+  //   ";
+  // }
+    echo " 
+      <div class='toastrDefaultSuccess'>
+        <strong>Berhasil!</strong> Data berhasil ditambahkan.
+      </div>
+        ";
+  } else { echo "
+      <div class='toastrDefaultError'>
+        <strong>Gagal!</strong> Data gagal ditambahkan.
+      </div>
+        ";
   }
 }
 ?>
@@ -31,7 +42,7 @@ if(isset($_POST["submit"])) {
                   <!-- modals -->
                   <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_barang">
-                  Tambah Data
+                  <i class="fas fa-plus"> </i> Tambah Data 
                 </button>                  
               </div>
             </div>
@@ -64,8 +75,8 @@ if(isset($_POST["submit"])) {
                     <td><?= $row["satuan_brg"]; ?></td>
                     <td>Rp. <?=  $duit ?></td>
                     <td class="td-actions text-center">
-                      <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Barang" class="btn btn-success" href="?halaman=barang&aksi=edit_barang&id=<?= $row["id_brg"]; ?>"><i class="fas fa-pencil-alt"></i></a>
-                      <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Barang" class="btn btn-danger" href="?halaman=barang&aksi=hapus_barang&id=<?= $row["id_brg"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-trash-alt"></i></a> 
+                      <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Barang" class="btn btn-success" href="?halaman=barang&aksi=edit_barang&id=<?= $row["id_brg"]; ?>"><i class="fas fa-edit"></i></a>
+                      <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Barang" class="btn btn-danger" href="?halaman=barang&aksi=hapus_barang&id=<?= $row["id_brg"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-eraser"></i></a> 
                     </td>
                   </tr>
                   <?php $i++; ?>
@@ -146,7 +157,7 @@ if(isset($_POST["submit"])) {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                  <button type="submit" name="submit" class="btn btn-success float-right">Simpan Data</button>
+                  <button type="submit" name="submit" class="btn btn-success float-right"><i class="fas fa-save"> </i> Simpan Data</button>
                 </div>
               </form>          
             </div>
@@ -157,4 +168,3 @@ if(isset($_POST["submit"])) {
   </div>
 </div>
             <!-- end modals tambah-->
-

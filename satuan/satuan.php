@@ -31,7 +31,7 @@ if(isset($_POST["submit"])) {
                   <!-- modals -->
                   <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_satuan">
-                  Tambah Data
+                  <i class="fas fa-plus"> </i> Tambah Data
                 </button>                  
               </div>
             </div>
@@ -52,8 +52,8 @@ if(isset($_POST["submit"])) {
                     <td class="text-center"><?= $i; ?></td>
                     <td><?= $row["satuan_brg"]; ?></td>
                     <td class="td-actions text-center">
-                      <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Satuan" class="btn btn-success" href="?halaman=satuan&aksi=edit_satuan&id=<?= $row["id_satuan"]; ?>"><i class="fas fa-pencil-alt"></i></a>
-                      <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Satuan" class="btn btn-danger" href="?halaman=satuan&aksi=hapus_satuan&id=<?= $row["id_satuan"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-trash-alt"></i></a> 
+                      <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Satuan" class="btn btn-success" href="?halaman=satuan&aksi=edit_satuan&id=<?= $row["id_satuan"]; ?>"><i class="fas fa-edit"></i></a>
+                      <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Satuan" class="btn btn-danger" href="?halaman=satuan&aksi=hapus_satuan&id=<?= $row["id_satuan"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-eraser"></i></a> 
                     </td>
                   </tr>
                   <?php $i++; ?>

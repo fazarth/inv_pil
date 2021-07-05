@@ -1,26 +1,27 @@
 <?php
-header('Content-Type: application/json');
-include dirname(dirname(__FILE__)).'/api/db/Db.class.php';
-$db = new Db();
-$limit = isset($_GET['limit']) ? (int) $_GET['limit'] : 0;
-$name = isset($_GET['name']) ? $_GET['name'] : '';
-$sql_limit = '';
-if (!empty($limit)) {
-    $sql_limit = ' LIMIT 0,'.$limit;
+include 'koneksi.php';
+
+$sql = "SELECT * FROM pil_ktgr";
+$result = mysqli_query($conn, $sql);
+
+$array = array();
+if (mysqli_num_rows($result) > 0) {
+    
+    while($row = mysqli_fetch_array($result)) {
+        $data = array(
+            'id_ktgr' => $row['id_ktgr'],
+            'ktgr_brg' => $row['ktgr_brg'],
+            
+        );
+        array_push($array, $data);
+    }
 }
-$sql_name = '';
-if (!empty($name)) {
-    $sql_name = ' WHERE nm_brg LIKE \'%'.$name.'%\' ';
-}
-$brg_list = $db->query('SELECT * FROM pil_ktgr '.$sql_name.' '.$sql_limit);
-$ktgr = array();
-$ktgr['info'] = 'success';
-$ktgr['num'] = count($brg_list);
-$ktgr['result'] = $brg_list;
-$json = json_encode(array($ktgr));
+
+$json = json_encode($array);
 
 if (file_put_contents("JSON/KategoriBarang.json", $json)){
-    echo "File JSON sukses dibuat...";
+    echo "File JSON sukses dibuat...
+    <meta http-equiv='refresh' content='1; url= ../?halaman=api'/> ";
 } else {
     echo "Oops! Terjadi error saat membuat file JSON...";
 }

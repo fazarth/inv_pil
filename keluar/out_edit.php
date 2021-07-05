@@ -1,6 +1,12 @@
 <?php 
 $id = $_GET["id"];
-$out = query("SELECT * FROM pil_out WHERE id = $id")[0];
+$out = query("SELECT * FROM pil_out 
+              INNER JOIN pil_brg 
+              ON pil_out.id_brg = pil_brg.id_brg 
+              INNER JOIN pil_ktgr 
+              ON pil_brg.id_ktgr = pil_ktgr.id_ktgr
+              INNER JOIN pil_satuan
+              ON pil_brg.id_satuan = pil_satuan.id_satuan WHERE id_out = $id")[0];
 
 
 if(isset($_POST["submit"])) {
@@ -33,13 +39,13 @@ if(isset($_POST["submit"])) {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="hidden" name="id" id="id" required value="<?= $out["id"]; ?>">
-                  <label for="">ID Transaksi</label> 
-                  <input class="form-control" disabled="disabled" type="text" name="id_transaksi" id="id_transaksi" required value="<?= $out["id_transaksi"]; ?>">
+                  <input type="hidden" name="id_out" id="id_out" required value="<?= $out["id_out"]; ?>">
+                  <label for="">Kode Transaksi</label> 
+                  <input class="form-control" disabled="disabled" type="text" name="kd_out" id="kd_out" required value="<?= $out["kd_out"]; ?>">
                 </div>
                 <div class="form-group">
                   <label for="">Tanggal Transaksi</label> 
-                  <input class="form-control" type="date" name="tgl_transaksi" id="tgl_transaksi" required value="<?= $out["tgl_transaksi"]; ?>">
+                  <input class="form-control" type="date" name="tgl_out" id="tgl_out" required value="<?= $out["tgl_out"]; ?>">
                 </div>
                 <div class="form-group">
                   <label for="">Kode Barang</label> 
@@ -74,7 +80,7 @@ if(isset($_POST["submit"])) {
           <!-- /.card-body -->
           <div class="card-footer">
             <a class="btn btn-secondary" href="?halaman=barang">Batal</a>
-            <button type="submit" name="submit" class="btn btn-success float-right">Perbaharui Data</button>
+            <button type="submit" name="submit" class="btn btn-success float-right"><i class="fas fa-save"> </i> Perbaharui Data</button>
           </div>
         </form>
       </div>

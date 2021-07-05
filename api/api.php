@@ -1,12 +1,3 @@
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1 class="m-0">Dashboard</h1>
-      </div>
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -15,7 +6,7 @@
           <div class="card-header">
             <div class="row">
               <div class="col-md-6">
-                <h3 class="card-title"><h2>Dokumntasi API</h2></h3>
+                <h3 class="card-title"><h2>Dokumentasi API</h2></h3>
               </div>
             </div>
           </div>
@@ -39,25 +30,21 @@
                     <td>2.</td>
                     <td>Data Barang Masuk</td>
                     <td><a href="api/barang_masuk.php">Daftar Barang Masuk</a></td>
-                    <td>
                   </tr>
                   <tr>
                     <td>3.</td>
                     <td>Data Barang Keluar</td>
                     <td><a href="api/barang_keluar.php">Daftar Barang Keluar</a></td>
-                    <td>
                   </tr>
                   <tr>
                     <td>4.</td>
                     <td>Data Satuan Barang</td>
                     <td><a href="api/satuan_barang.php">Daftar Satuan Barang</a></td>
-                    <td>
                   </tr>
                   <tr>
-                    <td>4.</td>
+                    <td>5.</td>
                     <td>Data Kategori Barang</td>
                     <td><a href="api/kategori_barang.php">Daftar Kategori Barang</a></td>
-                    <td>
                   </tr>
                 </tbody>
               </table>

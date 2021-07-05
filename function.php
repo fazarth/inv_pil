@@ -82,10 +82,6 @@ function query($query) {
     global $conn;
     $result = mysqli_query($conn, $query);
     $rows = []; 
-    // while($row = mysqli_fetch_assoc($result)) {
-    //     $rows[] = $row;
-    // }
-
     if( $result ){
       while( $row = mysqli_fetch_assoc( $result ) ){
       $rows[] = $row;
@@ -256,7 +252,7 @@ function hapus_brg($id_brg) {
 
 function hapus_ktgr($id) {
   global $conn;
-  mysqli_query($conn, "DELETE FROM pil_ktgr WHERE id = $id");
+  mysqli_query($conn, "DELETE FROM pil_ktgr WHERE id_ktgr = $id");
   return mysqli_affected_rows($conn);    
 }
 
@@ -265,23 +261,6 @@ function in_hapus($id) {
 
   mysqli_query($conn, "DELETE FROM pil_in WHERE id_in = $id");
   return mysqli_affected_rows($conn);    
-
-  // $id_brg = $_POST['id_brg'];
-  // $lihatstock = mysqli_query($conn,"SELECT * FROM pil_brg WHERE id_brg='$id_brg'"); 
-  // $stocknya = mysqli_fetch_array($lihatstock); 
-  // $stockskrg = $stocknya['jml_brg'];
-
-  // $lihatdataskrg = mysqli_query($conn,"SELECT * FROM pil_in WHERE id_in='$id'");
-  // $preqtyskrg = mysqli_fetch_array($lihatdataskrg); 
-  // $qtyskrg = $preqtyskrg['jml_brg_in'];
-
-  // $adjuststock = $stockskrg+$qtyskrg;
-
-  // $queryUpdate = "UPDATE pil_brg set jml_brg='$adjuststock' WHERE id_brg='$id_brg'";
-  // $queryDel = "DELETE FROM pil_in WHERE id_in='$id'";
-
-  // mysqli_query($conn, $queryUpdate);
-  // mysqli_query($conn, $queryDel);
 }
 
 function out_hapus($id) {
@@ -347,43 +326,56 @@ function edit_ktgr($ktgr) {
 function in_edit($in) {
   global $conn;
 
-  // $id = $in["id"];
-  // $tgl_transaksi = htmlspecialchars($in["tgl_transaksi"]);
-  // $kd_brg = htmlspecialchars($in["kd_brg"]);
-  // $nm_brg = htmlspecialchars($in["nm_brg"]);
-  // $pengirim = htmlspecialchars($in["pengirim"]);
-  // $jml_brg = htmlspecialchars($in["jml_brg"]);
-  // $satuan_brg = htmlspecialchars($in["satuan_brg"]);
-
-  // $query = "UPDATE pil_in SET 
-  //           tgl_transaksi = '$tgl_transaksi',
-  //           kd_brg = '$kd_brg', 
-  //           nm_brg = '$nm_brg', 
-  //           pengirim = '$pengirim', 
-  //           jml_brg = $jml_brg, 
-  //           satuan_brg = '$satuan_brg'
-  //           WHERE id = $id";
-
   $id_in = $in["id_in"];
-  $id_ktgr = htmlspecialchars($in["id_ktgr"]);
+  $id_brg = $in["id_brg"];
+  $tgl_transaksi = htmlspecialchars($in["tgl_in"]);
   $pengirim = htmlspecialchars($in["pengirim"]);
-  $jml_brg = htmlspecialchars($in["jml_brg_in"]);
-  $id_satuan = htmlspecialchars($in["id_satuan"]);
+  $jml_brg_in = htmlspecialchars($in["jml_brg_in"]);
+  // $satuan_brg = htmlspecialchars($in["satuan_brg"]);
   $harga_rp = htmlspecialchars($in["harga_brg"]);
 
   $harga_str = preg_replace("/[^0-9]/", "", $harga_rp);
   $harga_brg = (int) $harga_str;
 
-  $query = "UPDATE pil_in SET  
-            id_ktgr = '$id_ktgr',
-            pengirim = '$pengirim', 
-            jml_brg = $jml_brg, 
-            id_satuan = '$id_satuan',
-            harga_brg = '$harga_brg'
-            WHERE id_in = $id_in";
+  $lihatstock = mysqli_query($conn,"SELECT * FROM pil_brg WHERE id_brg='$id_brg'");
+  $stocknya = mysqli_fetch_array($lihatstock);
+  $stockskrg = $stocknya['jml_brg'];
+
+  $lihatdataskrg = mysqli_query($conn,"SELECT * FROM pil_in WHERE id_in='$id_in'"); //lihat qty saat ini
+  $preqtyskrg = mysqli_fetch_array($lihatdataskrg); 
+  $qtyskrg = $preqtyskrg['jml_brg_in'];//jumlah skrg
+
+  if ($jml_brg_in >= $qtyskrg) {
+    $hitungselisih = $jml_brg_in-$qtyskrg;
+    $tambahistock = $stockskrg+$hitungselisih;
+
+      $query = "UPDATE pil_brg SET 
+                jml_brg = $tambahistock,
+                harga_brg = $harga_brg, 
+                WHERE id_brg = '$id_brg'";
+      $query2 = "UPDATE pil_in SET 
+                tgl_in = '$tgl_transaksi',
+                pengirim = '$pengirim', 
+                jml_brg_in = $jml_brg_in, 
+                WHERE id_in = $id_in";
+  } else {
+    $hitungselisih = $jml_brg_in - $qtyskrg;
+    $kurangistock = $stockskrg - $hitungselisih;
+
+      $query = "UPDATE pil_brg SET 
+                jml_brg = $kurangistock,
+                harga_brg = $harga_brg, 
+                WHERE id_brg = '$id_brg'";
+      $query2 = "UPDATE pil_in SET 
+                tgl_transaksi = '$tgl_transaksi',
+                pengirim = '$pengirim', 
+                jml_brg_in = $jml_brg_in, 
+                WHERE id_in = $id_in";
 
   mysqli_query($conn, $query);
+  mysqli_query($conn, $query2);
   return mysqli_affected_rows($conn);
+}
 }
 
 function out_edit($out) {
@@ -458,4 +450,5 @@ function in_update($in) {
 }
 
 // end update stock barang masuk
+
 ?>

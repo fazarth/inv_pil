@@ -88,7 +88,7 @@ if(isset($_POST["submit"])) {
           <!-- /.card-body -->
           <div class="card-footer">
             <a class="btn btn-secondary" href="?halaman=barang">Batal</a>
-            <button type="submit" name="submit" class="btn btn-success float-right">Perbaharui Data</button>
+            <button type="submit" name="submit" class="btn btn-success float-right"><i class="fas fa-save"> </i>Perbaharui Data</button>
           </div>
         </form>
       </div>

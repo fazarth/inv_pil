@@ -31,7 +31,7 @@ if(isset($_POST["submit"])) {
                   <!-- modals -->
                   <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_out">
-                  Tambah Transaksi
+                  <i class="fas fa-plus"> </i> Tambah Transaksi
                 </button>                  
               </div>
             </div>
@@ -70,8 +70,8 @@ if(isset($_POST["submit"])) {
                   <td><?= $row["satuan_brg"]; ?></td>
                   <td>Rp. <?= $duit ?></td>
                   <td class="td-actions text-center">
-                    <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Transaksi" class="btn btn-success" href="?halaman=keluar&aksi=edit_barang_keluar&id=<?= $row["id_out"]; ?>"><i class="fas fa-pencil-alt"></i></a>
-                    <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Transaksi" class="btn btn-danger" href="?halaman=keluar&aksi=hapus_barang_keluar&id=<?= $row["id_out"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-trash-alt"></i></a> 
+                    <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Transaksi" class="btn btn-success" href="?halaman=keluar&aksi=edit_barang_keluar&id=<?= $row["id_out"]; ?>"><i class="fas fa-edit"></i></a>
+                    <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Transaksi" class="btn btn-danger" href="?halaman=keluar&aksi=hapus_barang_keluar&id=<?= $row["id_out"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-eraser"></i></a> 
                   </td>
                 </tr>
                 <?php $i++; ?>
@@ -124,7 +124,7 @@ if(isset($_POST["submit"])) {
                       <div class="form-group">
                           <label for="">Kode Barang</label> 
                           <!-- <input class="form-control" type="text" name="kd_brg" id="kd_brg" required> -->
-                          <select name="id_brg" id="id_brg" class="form-control select2">
+                          <select name="id_brg" id="id_brg" class="form-control select2 id_brg">
                             <option> </option>
                             <?php foreach ($brg as $row ) : ?>
                             <?php $angka = $row["harga_brg"];
@@ -137,7 +137,7 @@ if(isset($_POST["submit"])) {
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                  <button type="submit" name="submit" class="btn btn-success float-right">Simpan Data</button>
+                  <button type="submit" name="submit" class="btn btn-success float-right"><i class="fas fa-save"> </i> Simpan Data</button>
                 </div>
               </form>          
             </div>

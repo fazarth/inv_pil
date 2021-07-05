@@ -6,7 +6,7 @@ $in = query("SELECT * FROM pil_in
               INNER JOIN pil_ktgr 
               ON pil_brg.id_ktgr = pil_ktgr.id_ktgr
               INNER JOIN pil_satuan
-              ON pil_brg.id_satuan = pil_satuan.id_satuan")[0];
+              ON pil_brg.id_satuan = pil_satuan.id_satuan WHERE id_in = $id")[0]; 
 
 
 if(isset($_POST["submit"])) {
@@ -40,12 +40,13 @@ if(isset($_POST["submit"])) {
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="hidden" name="id_in" id="id_in" required value="<?= $in["id_in"]; ?>">
-                  <label for="">ID Transaksi</label> 
+                  <input type="hidden" name="id_brg" id="id_brg" required value="<?= $in["id_brg"]; ?>">
+                  <label for="">Kode Transaksi</label> 
                   <input class="form-control" disabled="disabled" type="text" name="kd_in" id="kd_in" required value="<?= $in["kd_in"]; ?>">
                 </div>
                 <div class="form-group">
                   <label for="">Tanggal Transaksi</label> 
-                  <input class="form-control" disabled="disabled" type="date" name="tgl_in" id="tgl_in" required value="<?= $in["tgl_in"]; ?>">
+                  <input class="form-control" type="date" name="tgl_in" id="tgl_in" required value="<?= $in["tgl_in"]; ?>">
                 </div>
                 <div class="form-group">
                   <label for="">Kode Barang</label> 
@@ -57,7 +58,7 @@ if(isset($_POST["submit"])) {
                 </div>
                 <div class="form-group">
                   <label>Kategori Barang</label>
-                  <select name="id_ktgr" id="id_ktgr" class="form-control select2">
+                  <select name="id_ktgr" id="id_ktgr" class="form-control select2" disabled="disabled">
                     <option value="<?= $in["id_ktgr"]; ?>"><?= $in["ktgr_brg"]; ?> </option>
                     <?php foreach ($ktgr as $row ) : ?>
                     <option value="<?= $row["id_ktgr"]; ?>"><?= $row["ktgr_brg"]; ?></option>
@@ -72,11 +73,11 @@ if(isset($_POST["submit"])) {
                 </div>
                 <div class="form-group">
                   <label for="">Jumlah Barang</label>
-                  <input class="form-control" type="number" disabled="disabled" name="jml_brg_in" id="jml_brg_in" required value="<?= $in["jml_brg_in"]; ?>">
+                  <input class="form-control" type="number" name="jml_brg_in" id="jml_brg_in" required value="<?= $in["jml_brg_in"]; ?>">
                 </div>
                 <div class="form-group">
                   <label>Satuan Barang</label>
-                  <select name="id_satuan" id="id_satuan" class="form-control select2">
+                  <select name="id_satuan" id="id_satuan" class="form-control select2" disabled="disabled">
                     <option value="<?= $in["id_satuan"]; ?>"><?= $in["satuan_brg"]; ?></option>
                     <?php foreach ($satuan as $row ) : ?>
                     <option value="<?= $row["id_satuan"]; ?>"><?= $row["satuan_brg"]; ?></option>
@@ -93,7 +94,7 @@ if(isset($_POST["submit"])) {
           <!-- /.card-body -->
           <div class="card-footer">
             <a class="btn btn-secondary" href="?halaman=masuk">Batal</a>
-            <button type="submit" name="submit" class="btn btn-success float-right">Perbaharui Data</button>
+            <button type="submit" name="submit" class="btn btn-success float-right"><i class="fas fa-save"> </i>Perbaharui Data</button>
           </div>
         </form>
       </div>

@@ -31,7 +31,7 @@ if(isset($_POST["submit"])) {
                   <!-- modals -->
                   <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_kategori">
-                  Tambah Data
+                  <i class="fas fa-plus"> </i> Tambah Data
                 </button>                  
               </div>
             </div>
@@ -52,8 +52,8 @@ if(isset($_POST["submit"])) {
                     <td class="text-center"><?= $i; ?></td>
                     <td><?= $row["ktgr_brg"]; ?></td>
                     <td class="td-actions text-center">
-                      <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Kategori" class="btn btn-success" href="?halaman=kategori&aksi=edit_kategori&id=<?= $row["id_ktgr"]; ?>"><i class="fas fa-pencil-alt"></i></a>
-                      <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Kategori" class="btn btn-danger" href="?halaman=kategori&aksi=hapus_kategori&=<?= $row["id_ktgr"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-trash-alt"></i></a> 
+                      <a rel="tooltip" data-toggle="tooltip"data-placement="top" title="Edit Kategori" class="btn btn-success" href="?halaman=kategori&aksi=edit_kategori&id=<?= $row["id_ktgr"]; ?>"><i class="fas fa-edit"></i></a>
+                      <a rel="tooltip" data-toggle="tooltip" data-placement="top" title="Hapus Kategori" class="btn btn-danger" href="?halaman=kategori&aksi=hapus_kategori&id=<?= $row["id_ktgr"]; ?>" onclick="return confirm('Yakin?');"><i class="fas fa-eraser"></i></a> 
                     </td>
                   </tr>
                   <?php $i++; ?>
@@ -97,7 +97,7 @@ if(isset($_POST["submit"])) {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                  <button type="submit" name="submit" class="btn btn-success float-right">Simpan Data</button>
+                  <button type="submit" name="submit" class="btn btn-success float-right"><i class="fas fa-save"> </i>Simpan Data</button>
                 </div>
               </form>          
             </div>
